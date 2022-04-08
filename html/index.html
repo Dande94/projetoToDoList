@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Anderson Nunes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/CSS/style.css">
+    <title>Projeto VUEJS - To Do List</title>
+</head>
+<body>
+    <main id="app">
+        <header>
+            <h2>Lista de Tarefas com VueJS</h2>
+            <form>
+                <input type="text" v-model="currentTodo"   placeholder="Digite sua tarefa ..." maxlength="500" >
+                <button @click.prevent="addTodo">+</button>
+            </form>
+        </header>
+        <section>
+            <ol>
+                <li v-for="todo in filteredTodos" :key="todo.text" @click="toggleTodo(todo)">
+                    <div id="works">
+                        <input id="checkbox" type="checkbox" v-bind:checked="todo.done">
+                        <label>
+                            <del v-if="todo.done">
+                                {{ todo.text }}
+                            </del>
+                            <span v-else>
+                                {{ todo.text }}
+                            </span>
+                        </label>
+                    </div>
+                    <img src="../assets/icons/close_icon.png" @click="delTodo(todo)" alt="fechar">
+                </li>
+            </ol>
+        </section>
+    </main>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="../JS/script.js"></script>
+    <footer>
+        <p>Projeto "To Do List" &copy; Desenvolvido por Anderson Nunes</p>
+    </footer>
+</body>
+</html>
